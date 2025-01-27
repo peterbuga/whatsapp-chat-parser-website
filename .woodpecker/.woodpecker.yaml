@@ -1,0 +1,26 @@
+when:
+  - event: [tag, push]
+    branch: woodpecker
+
+labels:
+  platform: linux/amd64
+  target: cloud.hetzner.nexus
+
+steps:
+  - name: whatsapp-chat-parser
+    image: woodpeckerci/plugin-docker-buildx
+    settings:
+      platforms: linux/amd64  # ,linux/arm64/v8
+      dockerfile: dockerfile
+      context: ./
+      registry:
+        from_secret: REGISTRY_OCI
+      repo:
+        from_secret: REGISTRY_REPO
+      tags:
+        - latest
+        - ${CI_COMMIT_TAG}
+      username:
+        from_secret: REGISTRY_USER
+      password:
+        from_secret: REGISTRY_PASSWORD
