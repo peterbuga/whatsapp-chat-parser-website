@@ -23,7 +23,7 @@ steps:
         from_secret: REGISTRY_REPO
       tags:
         - "latest"
-        - "test"
+        - ${CI_COMMIT_SHA}
       username:
         from_secret: REGISTRY_USER
       password:
