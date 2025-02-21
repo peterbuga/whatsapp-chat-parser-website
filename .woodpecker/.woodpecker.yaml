@@ -7,11 +7,7 @@ labels:
   target: cloud.hetzner.nexus
 
 steps:
-  - name: envs
-    image: docker:cli
-    commands:
-      - env
-  - name: whatsapp-chat-parser
+  - name: build-and-push
     image: woodpeckerci/plugin-docker-buildx
     settings:
       platforms: linux/amd64,linux/arm64/v8
