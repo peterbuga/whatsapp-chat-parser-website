@@ -1,27 +1,27 @@
 when:
-  - event: [tag, push, manual, cron]
-    branch: woodpecker
+  - event: ["tag", "push", "manual", "cron"]
+    branch: "woodpecker"
 
 labels:
-  platform: linux/amd64
-  target: cloud.hetzner.nexus
+  platform: "linux/amd64"
+  target: "home.hyper.pulsar"
 
 steps:
-  - name: build-and-push
-    image: woodpeckerci/plugin-docker-buildx
+  - name: "build-and-push"
+    image: "woodpeckerci/plugin-docker-buildx"
     settings:
-      platforms: linux/amd64,linux/arm64/v8
-      dockerfile: dockerfile
-      context: ./
+      platforms: "linux/amd64,linux/arm64/v8"
+      dockerfile: "dockerfile"
+      context: "./"
       registry:
-        from_secret: REGISTRY_OCI
+        from_secret: "REGISTRY_OCI"
       repo:
-        from_secret: REGISTRY_REPO
+        from_secret: "REGISTRY_REPO"
       tags:
         - "latest"
-        - ${CI_COMMIT_SHA}
-        - ${CI_COMMIT_TAG=notag}
+        - "${CI_COMMIT_SHA}"
+        - "${CI_COMMIT_TAG=notag}"
       username:
-        from_secret: REGISTRY_USER
+        from_secret: "REGISTRY_USER"
       password:
-        from_secret: REGISTRY_PASSWORD
+        from_secret: "REGISTRY_PASSWORD"
