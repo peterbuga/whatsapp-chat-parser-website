@@ -3,8 +3,7 @@ when:
     branch: "woodpecker"
 
 labels:
-  platform: "linux/amd64"
-  target: "home.hyper.pulsar"
+  builder: "amd64arm64"
 
 steps:
   - name: "build-and-push"
